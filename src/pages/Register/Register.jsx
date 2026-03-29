@@ -43,7 +43,7 @@ export default function Register() {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     // Perubahan Utama: Definisikan Endpoint API
-    const API_URL = "${process.env.REACT_APP_API_URL}/api/users"; 
+    const API_URL = `${process.env.REACT_APP_API_URL}/api/users`; 
 
     // --- Definisi Fungsi Validasi ---
 
@@ -209,7 +209,7 @@ export default function Register() {
             } catch (error) {
                 // Error jaringan atau error lain di sisi klien
                 console.error("Network Error:", error);
-                setSubmitErrorsList(["Terjadi kesalahan koneksi. Pastikan server berjalan di ${process.env.REACT_APP_API_URL}."]);
+                setSubmitErrorsList([`Terjadi kesalahan koneksi. Pastikan server berjalan di ${process.env.REACT_APP_API_URL}.`]);
             } finally {
                 setIsLoading(false); // Selesai loading
             }

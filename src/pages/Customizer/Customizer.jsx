@@ -842,7 +842,7 @@ const formattedSummary = summaryData.map(item => [item.ItemId, item.qty]);
       console.log("🧩 Data dikirim ke backend:", designData);
   
       try {
-        const res = await fetch("${process.env.REACT_APP_API_URL}/api/design3d/save", {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/design3d/save`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(designData),

@@ -121,7 +121,7 @@ function MainSection({
         Detail: addressData.Detail,
       };
       console.log("Address Payload:", addressPayload);
-      const addressRes = await fetch("${process.env.REACT_APP_API_URL}/api/addresses", {
+      const addressRes = await fetch(`${process.env.REACT_APP_API_URL}/api/addresses`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(addressPayload),
@@ -148,7 +148,7 @@ function MainSection({
       };
 
       console.log("Delivery Payload:", deliveryPayload);
-      const deliveryRes = await fetch("${process.env.REACT_APP_API_URL}/api/deliveries", {
+      const deliveryRes = await fetch(`${process.env.REACT_APP_API_URL}/api/deliveries`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(deliveryPayload),
@@ -177,7 +177,7 @@ function MainSection({
         }
       }
 
-      const resModel = await fetch("${process.env.REACT_APP_API_URL}/api/design3d/");
+      const resModel = await fetch(`${process.env.REACT_APP_API_URL}/api/design3d/`);
       const dataModel = await resModel.json();
       const modelId = dataModel.reverse().slice(0, 1)[0]._id;
       // setModel(dataModel.reverse().slice(0, 1)[0]);
@@ -227,7 +227,7 @@ function MainSection({
           console.log(payload)
 
           try {
-            const response = await fetch("${process.env.REACT_APP_API_URL}/api/productdetails", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/productdetails`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(payload),
@@ -282,7 +282,7 @@ function MainSection({
 
         console.log("PRODUCT PAYLOAD : ", productPayload);
 
-        const productRes = await fetch("${process.env.REACT_APP_API_URL}/api/products/payment", {
+        const productRes = await fetch(`${process.env.REACT_APP_API_URL}/api/products/payment`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(productPayload),
@@ -322,7 +322,7 @@ function MainSection({
         UserId : user._id
       };
       console.log("Order Payload:", orderPayload);
-      const orderRes = await fetch("${process.env.REACT_APP_API_URL}/api/orders", {
+      const orderRes = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderPayload),
@@ -332,7 +332,7 @@ function MainSection({
       if (!orderRes.ok) throw new Error("Gagal memproses pesanan");
 
       // 🔥 PANGGIL BACKEND UNTUK BUAT MIDTRANS TOKEN
-      const midtransRes = await fetch("${process.env.REACT_APP_API_URL}/api/payment/create-transaction", {
+      const midtransRes = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/create-transaction`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -457,7 +457,7 @@ function MainSection({
 
               const updateStock = async (items, type) => {
                 const res = await fetch(
-                  "${process.env.REACT_APP_API_URL}/api/items/update-stock",
+                  `${process.env.REACT_APP_API_URL}/api/items/update-stock`,
                   {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -577,7 +577,7 @@ function MainSection({
 
     try {
       console.log("1. Menyimpan metadata desain...");
-      const saveRes = await fetch("${process.env.REACT_APP_API_URL}/api/design3d/save", {
+      const saveRes = await fetch(`${process.env.REACT_APP_API_URL}/api/design3d/save`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(designData),
@@ -849,7 +849,7 @@ export default function Payment() {
     showLoading("Menyiapkan data pembayaran...");
     try {
       // Fetch Admin Fee
-      const resFee = await fetch("${process.env.REACT_APP_API_URL}/api/adminfees/");
+      const resFee = await fetch(`${process.env.REACT_APP_API_URL}/api/adminfees/`);
       const dataFee = await resFee.json();
       setAdminFee(dataFee.reverse().slice(0, 1));
 
@@ -863,7 +863,7 @@ export default function Payment() {
       }
       const dataDisc = await response.json();
       // Fetch Discount
-      // const resDisc = await fetch("${process.env.REACT_APP_API_URL}/api/discounts/");
+      // const resDisc = await fetch(`${process.env.REACT_APP_API_URL}/api/discounts/`);
       // const dataDisc = await resDisc.json();
       setDiscountData(dataDisc);
 

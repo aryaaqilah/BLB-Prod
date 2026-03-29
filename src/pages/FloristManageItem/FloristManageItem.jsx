@@ -34,7 +34,7 @@ const FloristManageItem = () => {
   const fetchData = useCallback(async () => {
     setIsInitialLoading(true);
     try {
-      const compRes = await fetch("${process.env.REACT_APP_API_URL}/api/components");
+      const compRes = await fetch(`${process.env.REACT_APP_API_URL}/api/components`);
       const compData = await compRes.json();
       setAvailableComponents(compData);
 

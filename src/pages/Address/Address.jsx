@@ -247,9 +247,9 @@ export default function Address() {
     loadModel();
   }, []);
 
-  const API_URL_PROVINCE = "${process.env.REACT_APP_API_URL}/api/provinces";
-  const API_URL_CITY = "${process.env.REACT_APP_API_URL}/api/cities";
-  const API_URL_DISTRICT = "${process.env.REACT_APP_API_URL}/api/districts";
+  const API_URL_PROVINCE = `${process.env.REACT_APP_API_URL}/api/provinces`;
+  const API_URL_CITY = `${process.env.REACT_APP_API_URL}/api/cities`;
+  const API_URL_DISTRICT = `${process.env.REACT_APP_API_URL}/api/districts`;
     const handleProvince = async (e) => {
       try {
         const response = await fetch(API_URL_PROVINCE, {
