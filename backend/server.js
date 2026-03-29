@@ -41,7 +41,10 @@ const __dirname = path.dirname(__filename);
 // === Middleware ===
 // app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:3000" })); // Izinkan frontend React (menggunakan env atau fallback)
 app.use(cors({
-  origin: process.env.CLIENT_URL,
+  origin: [
+    process.env.CLIENT_URL,
+    "https://blb-prod.vercel.app"
+  ],
   credentials: true
 }));
 app.use(express.json());
