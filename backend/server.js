@@ -38,6 +38,8 @@ const PORT = process.env.PORT || 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// const cors = require("cors");
+
 // === Middleware ===
 // app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:3000" })); // Izinkan frontend React (menggunakan env atau fallback)
 app.use(cors({

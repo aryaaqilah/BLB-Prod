@@ -198,6 +198,15 @@ router.get("/get-shop", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const products = await Product.find().populate(POPULATE_FIELDS);
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id).populate({
