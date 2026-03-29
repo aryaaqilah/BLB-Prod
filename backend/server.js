@@ -42,13 +42,25 @@ const __dirname = path.dirname(__filename);
 
 // === Middleware ===
 // app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:3000" })); // Izinkan frontend React (menggunakan env atau fallback)
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  "https://blb-prod.vercel.app"
+].filter(Boolean); // Menghapus nilai null/undefined agar tidak error
+
 app.use(cors({
-  origin: [
-    process.env.CLIENT_URL,
-    "https://blb-prod.vercel.app"
-  ],
+  origin: function (origin, callback) {
+    // Izinkan jika origin ada di daftar atau jika request tidak punya origin (seperti Postman/Server-to-server)
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
