@@ -47,7 +47,7 @@ const FloristManageOrder = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/orders/${id}/cancel`,
+        `${process.env.REACT_APP_API_URL}/api/orders/${id}/cancel`,
         {
           method: "PATCH",
           headers: {
@@ -76,7 +76,7 @@ const FloristManageOrder = () => {
   // 🔥 FETCH ORDER DETAIL
   const fetchOrder = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${id}`);
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/${id}`);
       const data = await res.json();
 
       console.log("Fetched order data:", data); // Debug log
@@ -121,7 +121,7 @@ const FloristManageOrder = () => {
     showLoading("Menyimpan perubahan...");
 
     try {
-        const res = await fetch(`http://localhost:5000/api/orders/update-status/${id}`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/update-status/${id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"

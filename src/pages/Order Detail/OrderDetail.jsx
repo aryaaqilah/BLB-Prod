@@ -136,11 +136,11 @@ const OrderDetail = () => {
       setIsError(false);
       try {
         const response = await fetch(
-          `http://localhost:5000/api/orders/${orderId}`,
+          `${process.env.REACT_APP_API_URL}/api/orders/${orderId}`,
         );
         const data = await response.json();
         const ratingRes = await fetch(
-          `http://localhost:5000/api/ratings/check/${orderId}`,
+          `${process.env.REACT_APP_API_URL}/api/ratings/check/${orderId}`,
         );
         const ratingData = await ratingRes.json();
 
@@ -180,7 +180,7 @@ const OrderDetail = () => {
     showLoading("Menyelesaikan pesanan...");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/orders/status/${orderId}`,
+        `${process.env.REACT_APP_API_URL}/api/orders/status/${orderId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -206,7 +206,7 @@ const OrderDetail = () => {
     if (rating === 0) return showAlert("Silakan pilih rating bintang.");
     setIsSubmitting(true);
     try {
-      const response = await fetch("http://localhost:5000/api/ratings/add", {
+      const response = await fetch("${process.env.REACT_APP_API_URL}/api/ratings/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -375,7 +375,7 @@ const OrderDetail = () => {
                   src={
                     currentOrder?.productImageUrl.startsWith("data:image")
                       ? currentOrder?.productImageUrl
-                      : `http://localhost:5000${currentOrder?.productImageUrl}`
+                      : `${process.env.REACT_APP_API_URL}${currentOrder?.productImageUrl}`
                   }
                   alt="Product"
                   className="OrderDetailProductImage"

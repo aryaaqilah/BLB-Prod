@@ -44,12 +44,12 @@ const FloristManageBouquet = () => {
     if (!user?._id) return;
     setIsInitialLoading(true);
     try {
-      const itemsRes = await fetch(`http://localhost:5000/api/items/florist/${user._id}`);
+      const itemsRes = await fetch(`${process.env.REACT_APP_API_URL}/api/items/florist/${user._id}`);
       const itemsData = await itemsRes.json();
       setAvailableItems(itemsData);
 
       if (id) {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/products/${id}`);
         const data = await res.json();
         if (res.ok) {
           setFormData({
@@ -118,7 +118,7 @@ const FloristManageBouquet = () => {
 
     if (formData.Image) data.append("Image", formData.Image);
 
-    const url = id ? `http://localhost:5000/api/products/${id}` : `http://localhost:5000/api/products`;
+    const url = id ? `${process.env.REACT_APP_API_URL}/api/products/${id}` : `${process.env.REACT_APP_API_URL}/api/products`;
     const method = id ? "PUT" : "POST";
 
     try {
@@ -145,7 +145,7 @@ const FloristManageBouquet = () => {
       return formData.PreviewImage;
     }
     // Jika itu path dari server (misal: /uploads/...)
-    return `http://localhost:5000${formData.PreviewImage}`;
+    return `${process.env.REACT_APP_API_URL}${formData.PreviewImage}`;
   };
 
   return (

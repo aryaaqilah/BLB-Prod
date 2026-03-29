@@ -56,7 +56,7 @@ const ShopLanding = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/shops/${storeId}`
+          `${process.env.REACT_APP_API_URL}/api/shops/${storeId}`
         );
         const dataShop = await response.json();
 
@@ -66,7 +66,7 @@ const ShopLanding = () => {
 
         // SECTION GET PROVINCE, CITY, DISTRICT =========================================================================
         const response2 = await fetch(
-          `http://localhost:5000/api/provinces/${dataShop.Address.ProvinceId}`
+          `${process.env.REACT_APP_API_URL}/api/provinces/${dataShop.Address.ProvinceId}`
         );
         if (!response.ok) {
           throw new Error("Gagal mengambil data provinsi");
@@ -74,7 +74,7 @@ const ShopLanding = () => {
         const dataProv = await response2.json();
 
         const response3 = await fetch(
-          `http://localhost:5000/api/cities/${dataShop.Address.CityId}`
+          `${process.env.REACT_APP_API_URL}/api/cities/${dataShop.Address.CityId}`
         );
         if (!response2.ok) {
           throw new Error("Gagal mengambil data kota");
@@ -83,7 +83,7 @@ const ShopLanding = () => {
         console.log("Hasil pencarian:", dataProv);
 
         const response4 = await fetch(
-          `http://localhost:5000/api/districts/${dataShop.Address.DistrictId}`
+          `${process.env.REACT_APP_API_URL}/api/districts/${dataShop.Address.DistrictId}`
         );
         if (!response3.ok) {
           throw new Error("Gagal mengambil data kecamatan");
@@ -112,7 +112,7 @@ const ShopLanding = () => {
     const fetchRatings = async () => {
       setRatingState(prev => ({ ...prev, loading: true, error: false }));
       try {
-        const res = await fetch(`http://localhost:5000/api/ratings/florist/${storeId}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/ratings/florist/${storeId}`);
         const data = await res.json();
         if (res.ok) {
           const uniqueRatings = Array.from(new Map(data.map(item => [item._id, item])).values());
@@ -126,7 +126,7 @@ const ShopLanding = () => {
 
     const fetchProducts = async () => {
       const responseProduct = await fetch(
-            `http://localhost:5000/api/products/shop/${storeId}`
+            `${process.env.REACT_APP_API_URL}/api/products/shop/${storeId}`
           );
         const dataProduct = await responseProduct.json();
 

@@ -673,7 +673,7 @@ function MainSection(storeId) {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/items/shop/${shopId}`
+          `${process.env.REACT_APP_API_URL}/api/items/shop/${shopId}`
         );
         const dataShop = await response.json();
 
@@ -842,7 +842,7 @@ const formattedSummary = summaryData.map(item => [item.ItemId, item.qty]);
       console.log("🧩 Data dikirim ke backend:", designData);
   
       try {
-        const res = await fetch("http://localhost:5000/api/design3d/save", {
+        const res = await fetch("${process.env.REACT_APP_API_URL}/api/design3d/save", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(designData),
@@ -910,7 +910,7 @@ const formattedSummary = summaryData.map(item => [item.ItemId, item.qty]);
           // ... (Kode fetch ke backend)
           try {
             const res = await fetch(
-              `http://localhost:5000/api/design3d/${designId}/export`,
+              `${process.env.REACT_APP_API_URL}/api/design3d/${designId}/export`,
               {
                 method: "POST",
                 body: formData,

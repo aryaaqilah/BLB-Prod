@@ -12,14 +12,14 @@ export default function ARViewer() {
   useEffect(() => {
     async function fetchModel() {
       try {
-        const res = await fetch(`http://localhost:5000/api/design3d/${id}/ar?answer=${answer}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/design3d/${id}/ar?answer=${answer}`);
         const data = await res.json();
 
         if (!res.ok) throw new Error(data.message || "Gagal memuat model");
         if (!data.modelPath) throw new Error("Path model tidak ditemukan");
 
         // Model path akan dipakai langsung oleh <model-viewer>
-        setModelUrl(`http://localhost:5000${data.modelPath}`);
+        setModelUrl(`${process.env.REACT_APP_API_URL}${data.modelPath}`);
       } catch (err) {
         setError(err.message);
       }

@@ -25,7 +25,7 @@ const FloristCustomization = () => {
   const fetchData = useCallback(async () => {
     if (!user?._id) return;
     try {
-      const itemRes = await fetch(`http://localhost:5000/api/items/florist/${user._id}`);
+      const itemRes = await fetch(`${process.env.REACT_APP_API_URL}/api/items/florist/${user._id}`);
       const itemData = await itemRes.json();
 
       const filterByType = (type) =>
@@ -79,7 +79,7 @@ const FloristCustomization = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/items/customization/${user._id}`,
+        `${process.env.REACT_APP_API_URL}/api/items/customization/${user._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

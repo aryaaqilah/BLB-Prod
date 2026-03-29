@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
     try {
       const responses = await Promise.all(
         items.map(item =>
-          fetch(`http://localhost:5000/api/items/${item.ItemStokId}`)
+          fetch(`${process.env.REACT_APP_API_URL}/api/items/${item.ItemStokId}`)
         )
       );
 
@@ -50,7 +50,7 @@ const ProductCard = ({ product }) => {
       console.log("Semua stok mencukupi, lanjut ke checkout.", items);
 
       const updateStock = async (items, type) => {
-        const res = await fetch("http://localhost:5000/api/items/update-stock", {
+        const res = await fetch("${process.env.REACT_APP_API_URL}/api/items/update-stock", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ items, type }),
@@ -91,7 +91,7 @@ const ProductCard = ({ product }) => {
           src={
             product.image?.startsWith("data:image")
               ? product.image
-              : `http://localhost:5000${product.image}`
+              : `${process.env.REACT_APP_API_URL}${product.image}`
           } 
           alt={product.title} 
           className="product-image-pop" 

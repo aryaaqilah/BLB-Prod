@@ -18,7 +18,7 @@ const OrderCard = ({ order }) => {
   };
 
   const handleCopyLink = () => {
-    const linkToCopy = `http://localhost:5000/api/design3d/${order.threeDPath}/ar`;
+    const linkToCopy = `${process.env.REACT_APP_API_URL}/api/design3d/${order.threeDPath}/ar`;
 
     navigator.clipboard
       .writeText(linkToCopy)
@@ -55,7 +55,7 @@ const OrderCard = ({ order }) => {
             const StatusTemp = 0;
     
             const response = await fetch(
-              `http://localhost:5000/api/orders/${order.orderId}/status-pembayaran`,
+              `${process.env.REACT_APP_API_URL}/api/orders/${order.orderId}/status-pembayaran`,
               {
                 method: "PATCH",
                 headers: {
@@ -103,7 +103,7 @@ const OrderCard = ({ order }) => {
             const StatusTemp = 1;
             clear();
             const updateStatus = fetch(
-              `http://localhost:5000/api/orders/${order.orderId}/status-pembayaran`,
+              `${process.env.REACT_APP_API_URL}/api/orders/${order.orderId}/status-pembayaran`,
               {
                 method: "PATCH",
                 headers: {
@@ -114,7 +114,7 @@ const OrderCard = ({ order }) => {
             );
 
             const updateStock = async (items, type) => {
-              const res = await fetch("http://localhost:5000/api/items/update-stock", {
+              const res = await fetch("${process.env.REACT_APP_API_URL}/api/items/update-stock", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ items, type }),

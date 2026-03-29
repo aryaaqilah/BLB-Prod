@@ -37,7 +37,7 @@ const FloristProduct = () => {
     if (!user?._id) return;
     setProductState(prev => ({ ...prev, loading: true, error: false }));
     try {
-      const res = await fetch(`http://localhost:5000/api/products/florist/${user._id}`);
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/products/florist/${user._id}`);
       const data = await res.json();
       if (res.ok) {
         const uniqueData = Array.from(new Map(data.map(item => [item._id, item])).values());
@@ -52,7 +52,7 @@ const FloristProduct = () => {
     if (!user?._id) return;
     setItemState(prev => ({ ...prev, loading: true, error: false }));
     try {
-      const res = await fetch(`http://localhost:5000/api/items/florist/${user._id}`);
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/items/florist/${user._id}`);
       const data = await res.json();
       if (res.ok) {
         const uniqueData = Array.from(new Map(data.map(item => [item._id, item])).values());
@@ -96,7 +96,7 @@ const FloristProduct = () => {
     showLoading("Menghapus data...");
     try {
       const folder = activeTab === "Buket" ? "products" : "items";
-      const response = await fetch(`http://localhost:5000/api/${folder}/bulk-delete`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/${folder}/bulk-delete`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ids }),

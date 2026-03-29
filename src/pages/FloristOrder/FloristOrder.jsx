@@ -41,7 +41,7 @@ const FloristOrders = () => {
       if (!user?._id) return;
       setOrderState(prev => ({ ...prev, loading: true, error: false }));
       try {
-        const res = await fetch(`http://localhost:5000/api/orders/florist/${user._id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/florist/${user._id}`);
         const data = await res.json();
         if (res.ok) {
           const uniqueOrders = Array.from(new Map(data.map(item => [item._id, item])).values());
