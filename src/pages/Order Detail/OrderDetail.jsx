@@ -206,7 +206,7 @@ const OrderDetail = () => {
     if (rating === 0) return showAlert("Silakan pilih rating bintang.");
     setIsSubmitting(true);
     try {
-      const response = await fetch("${process.env.REACT_APP_API_URL}/api/ratings/add", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/ratings/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

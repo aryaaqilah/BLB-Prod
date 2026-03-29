@@ -50,7 +50,7 @@ const ProductCard = ({ product }) => {
       console.log("Semua stok mencukupi, lanjut ke checkout.", items);
 
       const updateStock = async (items, type) => {
-        const res = await fetch("${process.env.REACT_APP_API_URL}/api/items/update-stock", {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/items/update-stock`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ items, type }),
